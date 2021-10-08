@@ -1,10 +1,10 @@
 import { CREATE_POST, FETCH_ALL } from "../types/actionTypes";
 
 const initialState = {
-  posts: [],
+  posts: null
 };
 
-export const postReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ALL:
       return {
@@ -13,7 +13,10 @@ export const postReducer = (state = initialState, action) => {
       };
 
     case CREATE_POST:
-      return [...state, action.payload];
+      return {
+        ...state,
+        posts: [...state.posts, action.payload]
+      }
     default:
       return state;
   }
