@@ -1,4 +1,4 @@
-import { CREATE_POST, DELETE_POST, FETCH_ALL, UPDATE_POST } from "../types/actionTypes.js";
+import { CREATE_POST, DELETE_POST, FETCH_ALL, LIKE_POST, UPDATE_POST } from "../types/actionTypes.js";
 
 // Get logs from server
 export const getPosts = () => async dispatch => {
@@ -64,9 +64,29 @@ export const deletePost = (id) => async dispatch => {
    await fetch(`/posts/${id}`, {
       method: 'DELETE',
     });
+    
     dispatch({ type: DELETE_POST, payload: id });
 
   } catch (err) {
     console.log(err.message);
   }
 };
+
+// Like post
+export const likePost = (id) => async dispatch => {
+  try {
+   const res = await fetch(`/posts/${id}/likePost`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await res.json();
+    dispatch({ type: LIKE_POST, payload: data });
+
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+

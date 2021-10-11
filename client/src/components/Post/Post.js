@@ -6,21 +6,22 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../actions/index';
+import { deletePost, likePost } from '../../actions/index';
 
 
 const Post = ({ post, setCurrentId }) => {
     const dispatch = useDispatch();
     const classes = useStyles();
 
+
     const onDelete = () => {
         dispatch(deletePost(post._id));
-        refreshPage();
     }
 
-    const refreshPage = ()=>{
-        window.location.reload();
+    const onLike = () => {
+        dispatch(likePost(post._id))
     }
+
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
@@ -39,7 +40,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography variant="body2" color="textSecondary" component="p">{post.message}</Typography>
             </CardContent>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary"><ThumbUpAltIcon fontSize="small" /> <hr/> Like {post.likeCount} </Button>
+                <Button size="small" color="primary"><ThumbUpAltIcon fontSize="small" onClick={onLike} /> <hr /> Like {post.likeCount} </Button>
                 <Button size="small" color="primary"><DeleteIcon fontSize="small" onClick={onDelete} /> Delete</Button>
             </CardActions>
         </Card>

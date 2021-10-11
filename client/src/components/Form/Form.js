@@ -40,13 +40,16 @@ const Form = ({ currentId, setCurrentId }) => {
       dispatch(updatePost(currentId, postData));
       clear();
     }
-
   };
 
   const clear = () => {
     setCurrentId(null);
     setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
   };
+
+  const refreshPage = () => {
+    window.location.reload();
+  }
 
   return (
     <Paper className={classes.paper}>
@@ -95,7 +98,7 @@ const Form = ({ currentId, setCurrentId }) => {
           label="Tags"
           fullWidth
           value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
         ></TextField>
         <div className={classes.fileInput}>
           <FileBase
