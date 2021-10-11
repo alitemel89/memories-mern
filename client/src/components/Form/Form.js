@@ -47,9 +47,6 @@ const Form = ({ currentId, setCurrentId }) => {
     setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
   };
 
-  const refreshPage = () => {
-    window.location.reload();
-  }
 
   return (
     <Paper className={classes.paper}>

@@ -15,6 +15,7 @@ const Post = ({ post, setCurrentId }) => {
 
 
     const onDelete = () => {
+        console.log('delete button clicked');
         dispatch(deletePost(post._id));
     }
 

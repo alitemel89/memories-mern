@@ -4,7 +4,8 @@ const initialState = {
   posts: null
 };
 
-export default (state = initialState, action) => {
+// eslint-disable-next-line
+export default (state = initialState, action) => { 
   switch (action.type) {
     case FETCH_ALL:
       return {
