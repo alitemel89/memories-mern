@@ -1,4 +1,4 @@
-import { CREATE_POST, FETCH_ALL } from "../types/actionTypes";
+import { CREATE_POST, FETCH_ALL, UPDATE_POST } from "../types/actionTypes";
 
 const initialState = {
   posts: null
@@ -16,6 +16,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, action.payload]
+      };
+
+    case UPDATE_POST:
+      return {
+        ...state,
+        posts: state.posts.map(post => post.id === action.payload._id ? action.payload : post)
       }
     default:
       return state;
