@@ -33,7 +33,7 @@ const Form = ({ currentId, setCurrentId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (currentId === 0) {
+    if (!currentId) {
       dispatch(createPost(postData));
       clear();
     } else {
