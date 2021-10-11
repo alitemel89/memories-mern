@@ -3,6 +3,8 @@ import postReducer from "./postReducer";
 
 
 
-export default combineReducers({
+const rootReducer = combineReducers({
     posts: postReducer
 })
+
+export default rootReducer;

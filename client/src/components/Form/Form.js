@@ -31,7 +31,7 @@ const Form = () => {
   };
 
   return (
-    <Paper>
+    <Paper className={classes.paper}>
       <form
         action=""
         autoComplete="off"
