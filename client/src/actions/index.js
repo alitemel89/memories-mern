@@ -1,10 +1,12 @@
 import { CREATE_POST, DELETE_POST, FETCH_ALL, LIKE_POST, UPDATE_POST } from "../types/actionTypes.js";
+const url = "https://memories-at2.herokuapp.com/posts";
+
 
 // Get logs from server
 export const getPosts = () => async dispatch => {
   try {
 
-    const res = await fetch('/posts');
+    const res = await fetch(`${url}`);
     const data = await res.json();
 
     dispatch({
@@ -20,7 +22,7 @@ export const getPosts = () => async dispatch => {
 export const createPost = post => async dispatch => {
   try {
 
-    const res = await fetch('/posts', {
+    const res = await fetch(`${url}`, {
       method: 'POST',
       body: JSON.stringify(post),
       headers: {
@@ -42,7 +44,7 @@ export const createPost = post => async dispatch => {
 export const updatePost = (id, post) => async dispatch => {
   try {
 
-    const res = await fetch(`/posts/${id}`, {
+    const res = await fetch(`${url}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(post),
       headers: {
@@ -61,7 +63,7 @@ export const updatePost = (id, post) => async dispatch => {
 // Delete a post
 export const deletePost = (id) => async dispatch => {
   try {
-   await fetch(`/posts/${id}`, {
+   await fetch(`${url}/${id}`, {
       method: 'DELETE',
     });
     
@@ -75,7 +77,7 @@ export const deletePost = (id) => async dispatch => {
 // Like post
 export const likePost = (id) => async dispatch => {
   try {
-   const res = await fetch(`/posts/${id}/likePost`, {
+   const res = await fetch(`${url}/${id}/likePost`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
